@@ -6,22 +6,23 @@ curl -X PUT http://127.0.0.1:5000/api/v1/device/abc/changeColor \
 -d '{"color":"red"}'
 
 
-
+docker-compose rm -f
 docker volume rm device-color-changer_consul-config device-color-changer_consul-data \
- device-color-changer_consul-scripts device-color-changer_db-data\
-device-color-changer_log-data
+  device-color-changer_consul-scripts device-color-changer_db-data\
+  device-color-changer_log-data
+
+docker-compose up --force-recreate
+
 
 https://stackoverflow.com/questions/54807762/docker-compose-meaning-of-in-volume-definition
 
 
-docker-compose rm -f
-docker-compose up --force-recreate
 
 #docker-compose pull
 docker-compose up --build -d
 
 
-#docker-compose stop -t 1
+# docker-compose stop -t 1
 
 
 

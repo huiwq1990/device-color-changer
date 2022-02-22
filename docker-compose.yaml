@@ -81,7 +81,7 @@ services:
     networks:
       edgex-network: {}
     ports:
-      - 127.0.0.1:48082:48082/tcp
+      - 0.0.0.0:48082:48082/tcp
     read_only: true
   consul:
     container_name: edgex-core-consul
@@ -346,6 +346,8 @@ services:
     container_name: edgex-device-color
     hostname: edgex-device-color
     image: hub.jdcloud.com/tpaas/docker-device-color-changer:v0.0.0-a
+    ports:
+      - 0.0.0.0:50001:50001/tcp
     networks:
       edgex-network: {}
     depends_on:

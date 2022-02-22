@@ -4,11 +4,11 @@ LogLevel = 'DEBUG'
 [Service]
 BootTimeout = 30000
 CheckInterval = '10s'
-Host = 'edgex-color-server'
-ServerBindAddr = 'edgex-color-server'  # blank value defaults to Service.Host value
-Port = 5000
+Host = '0.0.0.0'
+ServerBindAddr = ''  # blank value defaults to Service.Host value
+Port = 50001
 Protocol = 'http'
-StartupMsg = 'device color started'
+StartupMsg = 'device color changer started'
 Timeout = 5000
 ConnectRetries = 10
 Labels = []
@@ -53,9 +53,9 @@ File = ''
 
 # Pre-define Devices
 [[DeviceList]]
-  Name = 'htmlDemoDevice'
-  Profile = 'colorChanger'
-  Service = 'color-changer'
+  Name = 'demoColorDevice'
+  Profile = 'colorChangerDeviceProfile'
+  Service = 'color-changer-device-service'
   Description = 'use html web as device'
   Labels = [ 'html-demo-device' ]
   [DeviceList.Protocols]

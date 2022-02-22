@@ -38,10 +38,11 @@ COPY . .
 RUN CGO_ENABLED=0 GO111MODULE=on go build -ldflags "-X github.com/edgexfoundry/device-color-changer.Version=" -o cmd/device-color ./cmd
 
 #FROM alpine
-FROM centos:7
-ENV APP_PORT=5000
+#FROM centos:7
+FROM nicolaka/netshoot
+ENV APP_PORT=50001
 EXPOSE $APP_PORT
-
+WORKDIR /
 COPY --from=builder /go/src/github.com/edgexfoundry/device-color-changer/cmd /
 COPY --from=builder /go/src/github.com/edgexfoundry/device-color-changer/Attribution.txt /
 COPY --from=builder /go/src/github.com/edgexfoundry/device-color-changer/LICENSE /

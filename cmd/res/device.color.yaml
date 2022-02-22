@@ -1,4 +1,4 @@
-name: "colorChanger"
+name: "colorChangerDeviceProfile"
 manufacturer: "huiwq1990@163.com"
 model: "ABCDE12345"
 labels:
@@ -7,7 +7,7 @@ labels:
 description: "change color."
 
 deviceResources:
-  - name: color
+  - name: ColorEntity
     description: "JSON message"
     properties:
       value:
@@ -16,33 +16,28 @@ deviceResources:
         { type: "String", readWrite: "R" }
 
 deviceCommands:
-  - name: "color"
+  - name: "changeColor"
     get:
-      - { operation: "get", deviceResource: "color" }
+      - { operation: "get", deviceResource: "ColorEntity" }
     set:
-      - { operation: "set", deviceResource: "color", parameter: "color" }
+      - { operation: "set", deviceResource: "ColorEntity" }
 
 coreCommands:
-  -
-    name: color
+  - name: changeColor
     get:
       path: "/api/v1/device/{deviceId}/changeColor"
       responses:
-      -
-        code: "200"
+      - code: "200"
         description: "get current color"
-        expectedValues: ["color"]
-      -
-        code: "503"
+        expectedValues: ["ColorEntity"]
+      - code: "503"
         description: "service unavailable"
         expectedValues: []
     put:
       path: "/api/v1/device/{deviceId}/changeColor"
       responses:
-      -
-        code: "201"
+      - code: "201"
         description: "set the color"
-      -
-        code: "503"
+      - code: "503"
         description: "service unavailable"
         expectedValues: []

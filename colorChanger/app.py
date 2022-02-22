@@ -49,15 +49,20 @@ def changeColorGet(id):
 @app.route('/api/v1/device/<id>/changeColor',methods=['PUT'])
 def changeColor(id):
     global color
-    request.get_json(force=True)
-
-    parser = reqparse.RequestParser()
-    parser.add_argument('color', required=True)
-    args = parser.parse_args()
-
-    color = (args['color'])
-
+#     request.get_json(force=True)
+#
+#     parser = reqparse.RequestParser()
+#     parser.add_argument('color', required=True)
+#     args = parser.parse_args()
+#
+#     color = (args['color'])
+#
+    if color == "red":
+      color = "green"
+    else:
+      color = "red"
     print("requesting device: ", id)
+
 
     returnData = "Command accepted"
 

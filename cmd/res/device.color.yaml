@@ -20,7 +20,7 @@ deviceCommands:
     get:
       - { operation: "get", deviceResource: "ColorEntity" }
     set:
-      - { operation: "set", deviceResource: "ColorEntity" }
+      - { operation: "set", deviceResource: "ColorEntity", parameter: "color" }
 
 coreCommands:
   - name: changeColor
@@ -35,6 +35,7 @@ coreCommands:
         expectedValues: []
     put:
       path: "/api/v1/device/{deviceId}/changeColor"
+      parameterNames: [ "ColorEntity" ]
       responses:
       - code: "201"
         description: "set the color"

@@ -42,3 +42,7 @@ docker_build:
 
 docker_push:
 	docker push ${REPO}/tpaas/docker-device-color-changer:$(VERSION)
+
+
+docker_build_python:
+	docker build

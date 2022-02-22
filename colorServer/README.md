@@ -2,10 +2,10 @@
 docker build -t hub.jdcloud.com/tpaas/device-create:v0.0.0 .
 
 
-docker run --net=host -it hub.jdcloud.com/tpaas/device-create:v0.0.0  /bin/sh
+docker run --net=host -it hub.jdcloud.com/tpaas/device-create:v0.0.0  /bin/bash
 
 
-python ./createRESTDevice.py -ip 127.0.0.1 -devip edgex-color-server
+python ./hg.py -ip 127.0.0.1 -devip edgex-color-server
 
 
 pip freeze requirements.txt
@@ -13,6 +13,10 @@ pip freeze requirements.txt
 cat requirements.txt
 
 
+
+{
+"color": "orange"
+}
 
 
 

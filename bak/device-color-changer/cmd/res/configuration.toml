@@ -1,0 +1,68 @@
+[Writable]
+LogLevel = 'DEBUG'
+
+[Service]
+BootTimeout = 30000
+CheckInterval = '10s'
+Host = '0.0.0.0'
+ServerBindAddr = ''  # blank value defaults to Service.Host value
+Port = 50001
+Protocol = 'http'
+StartupMsg = 'device color changer started'
+Timeout = 5000
+ConnectRetries = 10
+Labels = []
+EnableAsyncReadings = true
+AsyncBufferSize = 16
+
+[Registry]
+Host = 'localhost'
+Port = 8500
+Type = 'consul'
+
+[Logging]
+EnableRemote = false
+File = ''
+
+[Clients]
+  [Clients.Data]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 48080
+
+  [Clients.Metadata]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 48081
+
+  [Clients.Logging]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 48061
+
+[Device]
+  DataTransform = true
+  InitCmd = ''
+  InitCmdArgs = ''
+  MaxCmdOps = 128
+  MaxCmdValueLen = 256
+  RemoveCmd = ''
+  RemoveCmdArgs = ''
+  ProfilesDir = './res'
+  UpdateLastConnected = false
+
+# Pre-define Devices
+[[DeviceList]]
+  Name = 'demoColorDevice'
+  Profile = 'colorChangerDeviceProfile'
+  Service = 'color-changer-device-service'
+  Description = 'use html web as device'
+  Labels = [ 'html-demo-device' ]
+  [DeviceList.Protocols]
+    [DeviceList.Protocols.other]
+      Address = 'device-virtual-bool-01'
+      Port = '300'
+#   [[DeviceList.AutoEvents]]
+#     Frequency = '10s'
+#     OnChange = false
+#     Resource = 'Bool'

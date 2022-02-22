@@ -1,0 +1,53 @@
+
+
+cat<<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edgex-color-hangzhou
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edgex-device-color-changer
+      apps.openyurt.io/pool-name: hangzhou
+
+  template:
+    metadata:
+      labels:
+        app: edgex-device-color-changer
+        apps.openyurt.io/pool-name: hangzhou
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: apps.openyurt.io/nodepool
+                    operator: In
+                    values:
+                      - hangzhou
+      containers:
+        - env:
+            - name: Service_Host
+              value: edgex-device-color-changer
+          envFrom:
+            - configMapRef:
+                name: common-variables
+          image: hub-pub.jdcloud.com/tpaas/docker-device-color-changer:v0.0.4
+          command: ["/bin/sh"]
+          args: ["-c", "while true; do echo hello; sleep 10;done"]
+          imagePullPolicy: IfNotPresent
+          name: edgex-device-virtual
+          ports:
+            - containerPort: 49990
+              name: http
+              protocol: TCP
+      hostname: edgex-device-color-changer
+      imagePullSecrets:
+      - name: tpaas-itg
+      restartPolicy: Always
+      tolerations:
+        - effect: NoSchedule
+          operator: Exists
+EOF

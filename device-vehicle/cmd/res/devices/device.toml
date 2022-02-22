@@ -1,0 +1,10 @@
+#Pre-define Devices
+[[DeviceList]]
+  Name = 'demo-device'
+  ProfileName = 'test-profile'
+  Description = 'Test Device Vehicle'
+  Labels = [ 'device-vehicle-example' ]
+  [DeviceList.Protocols]
+    [DeviceList.Protocols.other]
+    Address = 'simple01'
+    Port = '300'

@@ -1,0 +1,33 @@
+
+networks:
+  edgex-network:
+    driver: bridge
+services:
+  device-random:
+    container_name: device-random
+    hostname: edgex-device-color
+    image: docker.io/edgexfoundry/device-random:0.0.0-dev
+    ports:
+      - 0.0.0.0:59988:59988/tcp
+    networks:
+      edgex-network: {}
+    depends_on:
+      - consul
+      - data
+      - metadata
+    environment:
+      CLIENTS_COMMAND_HOST: edgex-core-command
+      CLIENTS_COREDATA_HOST: edgex-core-data
+      CLIENTS_DATA_HOST: edgex-core-data
+      CLIENTS_METADATA_HOST: edgex-core-metadata
+      CLIENTS_NOTIFICATIONS_HOST: edgex-support-notifications
+      CLIENTS_RULESENGINE_HOST: edgex-kuiper
+      CLIENTS_SCHEDULER_HOST: edgex-support-scheduler
+      CLIENTS_VIRTUALDEVICE_HOST: edgex-device-virtual
+      DATABASES_PRIMARY_HOST: edgex-redis
+      EDGEX_SECURITY_SECRET_STORE: "false"
+      REGISTRY_HOST: edgex-core-consul
+      SERVICE_HOST: device-random
+
+version: '3.7'
+

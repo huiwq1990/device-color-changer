@@ -1,0 +1,40 @@
+name: "raspberrypi-rest-profile"
+manufacturer: "huiwq1990@163.com"
+model: "ABCDE12345"
+labels:
+  - "raspberrypi"
+description: "raspberrypi rgb."
+
+deviceResources:
+  -
+    name: "Color"
+    isHidden: false  #is hidden is false by default so this is just making it explicit for purpose of the walkthrough demonstration
+    description: "sensor color value"
+    properties:
+      valueType: "String"
+      readWrite: "RW"  #designates that this property can only be read and not set
+      defaultValue: "unknown"
+#  -
+#    name: "Temperature"
+#    isHidden: false
+#    description: "dth11 sensor temperature value"
+#    properties:
+#      valueType:  "String"
+#      readWrite: "R"
+#      defaultValue: "unknown"
+#  -
+#    name: "Humidity"
+#    isHidden: false
+#    description: "dth11 sensor humidity value"
+#    properties:
+#      valueType:  "String"
+#      readWrite: "R"
+#      defaultValue: "unknown"
+
+deviceCommands:
+  -
+    name: "GetColor"
+    readWrite: "R"
+    isHidden: false
+    resourceOperations:
+      - { deviceResource: "Color"}

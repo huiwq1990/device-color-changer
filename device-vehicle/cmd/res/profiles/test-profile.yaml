@@ -1,0 +1,77 @@
+name: "test-profile"
+manufacturer: "SPlab"
+model: "vehicleModel"
+labels:
+- "vehicle"
+description: "Test vehicle profile"
+
+deviceResources:
+-
+  name: "CarID"
+  isHidden: false  #is hidden is false by default so this is just making it explicit for purpose of the walkthrough demonstration
+  description: "vehicle's license"
+  properties:
+    valueType:  "String"
+    readWrite: "RW"  #designates that this property can only be read and not set
+    defaultValue: "unknown"
+-
+    name: "GPS"
+    isHidden: false
+    description: "vehicle's location"
+    properties:
+      valueType:  "Float64"
+      readWrite: "RW"  #designates that this property can only be read and not set
+      defaultValue: "0.0"
+-
+    name: "Velocity"
+    isHidden: false
+    description: "vehicle's speed"
+    properties:
+      valueType:  "Float64"
+      readWrite: "R"  #designates that this property can be read or set
+      defaultValue: "0"
+-
+    name: "Length"
+    isHidden: false
+    description: "vehicle's length"
+    properties:
+      valueType:  "Int64"
+      readWrite: "W"  #designates that this property can be read or set
+      defaultValue: "4"
+
+deviceCommands:
+-
+  name: "readAllResources"
+  readWrite: "R"
+  isHidden: false
+  resourceOperations:
+  - { deviceResource: "CarID"}
+
+-
+  name: "writeCarID"
+  readWrite: "W"
+  isHidden: false
+  resourceOperations:
+  - { deviceResource: "CarID", defaultValue : "unknown"}
+
+#-
+#  name: "writeGPS"
+#  readWrite: "W"
+#  isHidden: false
+#  resourceOperations:
+#  - { deviceResource: "GPS" }
+#-
+#  name: "readVelocity"
+#  readWrite: "R"
+#  isHidden: false
+#  resourceOperations:
+#  - { deviceResource: "Velocity" }
+#-
+#  name: "writeLength"
+#  readWrite: "W"
+#  isHidden: false
+#  resourceOperations:
+#  - { deviceResource: "Length" }
+#
+
+

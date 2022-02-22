@@ -1,0 +1,10 @@
+#Pre-define Devices
+[[DeviceList]]
+  Name = 'demo-raspberrypi'
+  ProfileName = 'raspberrypi-rest-profile'
+  Description = 'Raspberrypi Rest Device'
+  Labels = [ 'raspberrypi' ]
+  [DeviceList.Protocols]
+    [DeviceList.Protocols.other]
+    Address = 'simple01'
+    Port = '300'

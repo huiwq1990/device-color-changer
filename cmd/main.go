@@ -7,7 +7,8 @@
 package main
 
 import (
-	device_virtual "github.com/edgexfoundry/device-color-changer"
+	"fmt"
+	device_color "github.com/edgexfoundry/device-color-changer"
 	"github.com/edgexfoundry/device-color-changer/internal/driver"
 	"github.com/edgexfoundry/device-sdk-go/pkg/startup"
 )
@@ -17,6 +18,7 @@ const (
 )
 
 func main() {
+	fmt.Printf("version %s",device_color.Version)
 	d := driver.NewColorChangerDeviceDriver()
-	startup.Bootstrap(serviceName, device_virtual.Version, d)
+	startup.Bootstrap(serviceName, device_color.Version, d)
 }

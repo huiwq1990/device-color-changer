@@ -34,7 +34,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: common-variables
-          image: hub-pub.jdcloud.com/tpaas/docker-device-color-changer:v0.0.3
+          image: hub-pub.jdcloud.com/tpaas/docker-device-color-changer:v0.0.4
           command: ["/bin/sh"]
           args: ["-c", "while true; do echo hello; sleep 10;done"]
           imagePullPolicy: IfNotPresent

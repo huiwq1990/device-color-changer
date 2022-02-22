@@ -10,7 +10,7 @@ REPO ?= hub.jdcloud.com
 DOCKERS=docker_device_virtual_go
 .PHONY: $(DOCKERS)
 
-VERSION=v$(shell cat ./VERSION 2>/dev/null || echo 0.0.3)
+VERSION=v$(shell cat ./VERSION 2>/dev/null || echo 0.0.0)
 GIT_SHA=$(shell git rev-parse HEAD)
 GOFLAGS=-ldflags "-X github.com/edgexfoundry/device-color-changer.Version=$(VERSION)"
 
@@ -40,4 +40,4 @@ docker_device_color_changer:
 		.
 # 		-t ${REPO}/tpaas/docker-device-color-changer:$(GIT_SHA) \
 
-	docker push ${REPO}/tpaas/docker-device-color-changer:$(VERSION)
+# 	docker push ${REPO}/tpaas/docker-device-color-changer:$(VERSION)

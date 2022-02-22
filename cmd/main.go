@@ -20,5 +20,7 @@ const (
 func main() {
 	fmt.Printf("version %s",device_color.Version)
 	d := driver.NewColorChangerDeviceDriver()
-	startup.Bootstrap(serviceName, device_color.Version, d)
+	//startup.Bootstrap(serviceName, device_color.Version, d)
+	startup.Bootstrap(serviceName, "v0.0.1", d)
+
 }

@@ -47,4 +47,4 @@ COPY --from=builder /go/src/github.com/edgexfoundry/device-color-changer/Attribu
 COPY --from=builder /go/src/github.com/edgexfoundry/device-color-changer/LICENSE /
 
 ENTRYPOINT ["/device-color"]
-CMD ["--cp=consul.http://edgex-core-consul:8500", "--registry", "--confdir=/res"]
+CMD ["--cp=consul://edgex-core-consul:8500", "--registry", "--confdir=/res"]

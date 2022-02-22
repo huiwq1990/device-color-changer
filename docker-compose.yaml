@@ -345,7 +345,7 @@ services:
   device-color:
     container_name: edgex-device-color
     hostname: edgex-device-color
-    image: hub.jdcloud.com/tpaas/docker-device-color-changer:v0.0.0
+    image: hub.jdcloud.com/tpaas/docker-device-color-changer:v0.0.0-a
     networks:
       edgex-network: {}
     depends_on:
@@ -369,7 +369,7 @@ services:
   color-server:
     container_name: edgex-color-server
     hostname: edgex-color-server
-    image: hub.jdcloud.com/tpaas/docker-server-color-changer:v0.0.0
+    image: hub.jdcloud.com/tpaas/docker-server-color-changer:v0.0.0-a
     networks:
       edgex-network: {}
     ports:

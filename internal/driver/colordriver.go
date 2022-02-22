@@ -57,12 +57,17 @@ func (d *VirtualDriver) HandleReadCommands(deviceName string, protocols map[stri
 		d.locker.Unlock()
 	}()
 
+	fmt.Println(fmt.Sprintf("read cmd, device: %s, reqs: %v",deviceName,reqs))
+	d.lc.Info(fmt.Sprintf("read cmd, device: %s, reqs: %v",deviceName,reqs))
 
 	return res, nil
 }
 
 func (d *VirtualDriver) HandleWriteCommands(deviceName string, protocols map[string]models.ProtocolProperties, reqs []dsModels.CommandRequest,
 	params []*dsModels.CommandValue) error {
+	fmt.Println(fmt.Sprintf("read cmd, device: %s, reqs: %v",deviceName,reqs))
+
+	d.lc.Info(fmt.Sprintf("write cmd, device: %s, reqs: %v",deviceName,reqs))
 
 	return nil
 }

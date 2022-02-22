@@ -1,11 +1,11 @@
 [Writable]
-LogLevel = 'INFO'
+LogLevel = 'DEBUG'
 
 [Service]
 BootTimeout = 30000
 CheckInterval = '10s'
 Host = 'edgex-color-server'
-ServerBindAddr = ''  # blank value defaults to Service.Host value
+ServerBindAddr = 'edgex-color-server'  # blank value defaults to Service.Host value
 Port = 5000
 Protocol = 'http'
 StartupMsg = 'device color started'
@@ -62,7 +62,7 @@ File = ''
     [DeviceList.Protocols.other]
       Address = 'device-virtual-bool-01'
       Port = '300'
-  [[DeviceList.AutoEvents]]
-    Frequency = '10s'
-    OnChange = false
-    Resource = 'Bool'
+#   [[DeviceList.AutoEvents]]
+#     Frequency = '10s'
+#     OnChange = false
+#     Resource = 'Bool'

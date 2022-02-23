@@ -44,5 +44,6 @@ docker_push:
 	docker push ${REPO}/tpaas/docker-device-color-changer:$(VERSION)
 
 
-docker_build_python:
-	docker build
+docker_build_device_color_changer_python:
+	cd deviceColorChangerPython && \
+	docker build -t ${REPO}/tpaas/device-color-changer-python:v0.0.0-a .

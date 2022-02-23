@@ -49,3 +49,9 @@ yum -y install docker-ce-18.06.3.ce-3.el7
 ```
 
 https://cloud.tencent.com/developer/article/1701451
+
+
+
+wget https://github.com/openyurtio/openyurt/releases/download/v0.6.0/yurtctl; chmod u+x yurtctl;
+
+./yurtctl join 114.67.122.239:6443 --token=mqtv7p.dhqv7szz6csif7o1 --discovery-token-unsafe-skip-ca-verification --organizations=openyurt:tenant:19818831111 --v=5

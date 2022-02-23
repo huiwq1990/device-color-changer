@@ -19,3 +19,14 @@ BODY:
 docker build -t hub.jdcloud.com/tpaas/docker-server-color-changer:v0.0.0-a .
 
 docker push hub.jdcloud.com/tpaas/docker-server-color-changer:v0.0.0-a
+
+docker run -it -v ${PWD}:/usr/src/app/ hub.jdcloud.com/tpaas/docker-server-color-changer:v0.0.0-a /bin/bash
+
+curl  http://127.0.0.1:5000/api/v1/device/xx/changeColor
+
+curl -X PUT -H "Content-Type: application/json" -d '{"xx":"xx"}' http://127.0.0.1:5000/api/v1/device/xx/changeColor
+
+
+
+
+114.67.122.239:6443

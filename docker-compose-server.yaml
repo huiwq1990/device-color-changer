@@ -1,0 +1,73 @@
+#  * Copyright 2020 Intel Corporation.
+#  *
+#  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+#  * in compliance with the License. You may obtain a copy of the License at
+#  *
+#  * http://www.apache.org/licenses/LICENSE-2.0
+#  *
+#  * Unless required by applicable law or agreed to in writing, software distributed under the License
+#  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+#  * or implied. See the License for the specific language governing permissions and limitations under
+#  * the License.
+#  *
+#  * EdgeX Foundry, Hanoi, version "master"
+#  *******************************************************************************/
+#
+#
+#
+# ************************ This is a generated compose file ****************************
+#
+# DO NOT MAKE CHANGES that are intended to be permanent to EdgeX developer-scripts repo.
+#
+# Permanent changes can be made to the source compose files located in the compose-builder folder
+# at the top level of the developer-scripts repo.
+#
+# From the compose-builder folder use `make build` to regenerate all standard compose files variations
+#
+networks:
+  edgex-network:
+    driver: bridge
+services:
+
+  device-color:
+    container_name: edgex-device-color
+    hostname: edgex-device-color
+    image: hub.jdcloud.com/tpaas/docker-device-color-changer:v0.0.0-a
+    ports:
+      - 0.0.0.0:50001:50001/tcp
+    networks:
+      edgex-network: {}
+    depends_on:
+      - consul
+      - data
+      - metadata
+    environment:
+      CLIENTS_COMMAND_HOST: edgex-core-command
+      CLIENTS_COREDATA_HOST: edgex-core-data
+      CLIENTS_DATA_HOST: edgex-core-data
+      CLIENTS_METADATA_HOST: edgex-core-metadata
+      CLIENTS_NOTIFICATIONS_HOST: edgex-support-notifications
+      CLIENTS_RULESENGINE_HOST: edgex-kuiper
+      CLIENTS_SCHEDULER_HOST: edgex-support-scheduler
+      CLIENTS_VIRTUALDEVICE_HOST: edgex-device-virtual
+      DATABASES_PRIMARY_HOST: edgex-redis
+      EDGEX_SECURITY_SECRET_STORE: "false"
+      REGISTRY_HOST: edgex-core-consul
+      SERVICE_HOST: edgex-device-color
+
+  device-color-changer-python:
+    container_name: device-color-changer-python
+    hostname: device-color-changer-python
+    image: hub.jdcloud.com/tpaas/device-color-changer-python:v0.0.0-a
+    networks:
+      edgex-network: {}
+    ports:
+      - 0.0.0.0:5000:5000/tcp
+
+version: '3.7'
+volumes:
+  consul-config: {}
+  consul-data: {}
+  consul-scripts: {}
+  db-data: {}
+  log-data: {}

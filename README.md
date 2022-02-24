@@ -61,3 +61,8 @@ curl -X POST http://127.0.0.1:48081/api/v1/device \
 "name": "colorChanger"
 }
 }' 
+
+
+
+
+scp -r ../device-color-changer ubuntu@192.168.68.101:/home/ubuntu

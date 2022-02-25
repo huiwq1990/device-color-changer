@@ -59,11 +59,14 @@ https://cloud.tencent.com/developer/article/1701451
 
 wget https://github.com/openyurtio/openyurt/releases/download/v0.6.0/yurtctl; chmod u+x yurtctl;
 
-./yurtctl join 114.67.122.239:6443 --token=mqtv7p.dhqv7szz6csif7o1 --discovery-token-unsafe-skip-ca-verification --organizations=openyurt:tenant:19818831111 --v=5
+./yurtctl join 114.67.122.239:6443 --token=mqtv7p.dhqv7szz6csif7o1 --discovery-token-unsafe-skip-ca-verification --organizations=openyurt:tenant:19818831111  --ignore-preflight-errors all --v=5
 
 
 
-kubeadm join 114.67.122.239:6443 --token u88fhf.n4hq2bax2586xeh2 --discovery-token-ca-cert-hash sha256:0dbeba021a613e48e8313eebe386b204c6c9302050886fbe91c8d730948fa3f7  --ignore-preflight-errors all --config /tmp/kubeadm.yaml
+kubeadm join 114.67.122.239:6443 --token u88fhf.n4hq2bax2586xeh2 --discovery-token-ca-cert-hash sha256:0dbeba021a613e48e8313eebe386b204c6c9302050886fbe91c8d730948fa3f7  --ignore-preflight-errors all 
+
+
+--config /tmp/kubeadm.yaml
 
 
 https://gist.github.com/nilesh93/c743205d34fedb5f48ae4d37d959ba4b

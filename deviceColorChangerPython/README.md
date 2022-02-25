@@ -10,7 +10,7 @@
 docker build -t hub.jdcloud.com/tpaas/docker-server-color-changer:v0.0.0-a .
 docker push hub.jdcloud.com/tpaas/docker-server-color-changer:v0.0.0-a
 
-docker run --network=host -d hub.jdcloud.com/tpaas/device-color-changer-python:v0.0.0-a
+docker run --network=host -d -p 5000:5000 hub.jdcloud.com/tpaas/device-color-changer-python:v0.0.0-a
 
 
 ```

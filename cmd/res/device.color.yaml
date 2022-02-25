@@ -35,7 +35,7 @@ coreCommands:
         expectedValues: []
     put:
       path: "/api/v1/device/{deviceId}/changeColor"
-      parameterNames: [ "ColorEntity" ]
+      parameterNames: [ "color" ] # body体的key
       responses:
       - code: "201"
         description: "set the color"

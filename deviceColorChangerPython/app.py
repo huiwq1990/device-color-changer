@@ -52,20 +52,13 @@ def changeColorPut(id):
 
     data = request.get_json(force=True)
     print("changeColorPut, request body:",data)
-#
-#     parser = reqparse.RequestParser()
-#     parser.add_argument('color', required=True)
-#     args = parser.parse_args()
-#
-#     color = (args['color'])
-#
-    print("changeColorPut, request device:",id)
 
-    if color == "red":
-      color = "green"
-    else:
-      color = "red"
-
+    parser = reqparse.RequestParser()
+    parser.add_argument('color', required=True)
+    args = parser.parse_args()
+    reqColor = (args['color'])
+    color = reqColor
+    print("changeColorPut, request device:",id,"oldColor:",reqColor,"newColor",color)
 
     returnData = "color change accepted, current: " + color
 

@@ -21,3 +21,4 @@ cmd/db/
 VERSION
 
 edgeNode/.vagrant/
+main

@@ -3,7 +3,9 @@
 GO = CGO_ENABLED=0 GO111MODULE=on go
 
 MICROSERVICES=cmd/device-color
-REPO ?= hub.jdcloud.com
+# REPO ?= hub.jdcloud.com
+REGISTRY ?= docker.io
+REPO ?= huiwq1990
 
 .PHONY: $(MICROSERVICES)
 
@@ -33,19 +35,19 @@ clean:
 
 docker: $(DOCKERS)
 
-docker_build:
+docker_build_device_color_changer:
 	docker build \
 		--label "git_sha=$(GIT_SHA)" \
-		-t ${REPO}/tpaas/docker-device-color-changer:$(VERSION) \
+		-t ${REGISTRY}/${REPO}/device-color-changer:$(VERSION) \
 		.
 # 		-t ${REPO}/tpaas/docker-device-color-changer:$(GIT_SHA) \
 
 docker_push:
-	docker push ${REPO}/tpaas/docker-device-color-changer:$(VERSION)
+	docker push ${REGISTRY}/${REPO}/device-color-changer:$(VERSION)
 
 docker_build_device_color_changer_python:
 	cd deviceColorChangerPython && \
-	docker build -t ${REPO}/tpaas/device-color-changer-python:$(VERSION) .
+	docker build -t ${REGISTRY}/${REPO}/device-color-changer-python:$(VERSION) .
 
 
 

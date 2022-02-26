@@ -4,10 +4,10 @@ import os
 import sys
 from flask import Flask, render_template, redirect, request, url_for, make_response, jsonify
 from flask_restful import Resource, Api, reqparse
+from raspberry import m_RGB_LED
 
 app = Flask(__name__)
 color = "green"
-
 
 @app.route('/')
 def index():
@@ -59,6 +59,16 @@ def changeColorPut(id):
     reqColor = (args['color'])
     color = reqColor
     print("changeColorPut, request device:",id,"oldColor:",reqColor,"newColor",color)
+
+    if color == "red":
+      m_RGB_LED.setColor((255,0,0))
+    elif color == "green":
+      m_RGB_LED.setColor((0,255,0))
+    elif color == "blue":
+      m_RGB_LED.setColor((0,0,255))
+    else:
+      # https://www.rapidtables.com/web/color/Yellow_Color.html
+      m_RGB_LED.setColor((255,255,0))
 
     returnData = "color change accepted, current: " + color
 

@@ -21,6 +21,14 @@ docker run -it -v ${PWD}:/usr/src/app/ hub.jdcloud.com/tpaas/device-color-change
 
 curl  http://127.0.0.1:5000/api/v1/device/xx/changeColor
 
-curl -X PUT -H "Content-Type: application/json" -d '{"xx":"xx"}' http://127.0.0.1:5000/api/v1/device/xx/changeColor
+curl -X PUT -H "Content-Type: application/json" -d '{"color":"black"}' http://192.168.68.101:5000/api/v1/device/xx/changeColor
+curl -X PUT -H "Content-Type: application/json" -d '{"color":"red"}' http://192.168.68.101:5000/api/v1/device/xx/changeColor
+
+curl -X PUT -H "Content-Type: application/json" -d '{"color":"xx"}' http://192.168.68.101:5000/api/v1/device/xx/changeColor
+
+```
+
+```shell
+
 
 ```

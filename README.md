@@ -65,4 +65,7 @@ curl -X POST http://127.0.0.1:48081/api/v1/device \
 
 
 
-scp -r ../device-color-changer --exclude='vendor' --exclude='.git'  ubuntu@192.168.68.101:/home/ubuntu
+scp -r --exclude='vendor' ../device-color-changer  --exclude='.git'  ubuntu@192.168.68.101:/home/ubuntu
+
+
+scp -r ./deviceColorChangerPython/ ubuntu@192.168.68.101:/home/ubuntu

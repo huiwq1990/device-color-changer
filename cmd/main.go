@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	serviceName string = "color-changer-device-service"
+	serviceName string = "device-color-changer"
 )
 
 func main() {

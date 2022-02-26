@@ -44,7 +44,7 @@ def changeColorGet(id):
     print("remote addr", request.remote_addr,file=sys.stdout)
     print("requesting device: ", id)
 
-    return color, 200
+    return jsonify(color=color), 200
 
 @app.route('/api/v1/device/<id>/changeColor',methods=['PUT'])
 def changeColorPut(id):

@@ -29,7 +29,7 @@ coreCommands:
       responses:
       - code: "200"
         description: "get current color"
-        expectedValues: ["ColorEntity"]
+        expectedValues: ["color"]
       - code: "503"
         description: "service unavailable"
         expectedValues: []

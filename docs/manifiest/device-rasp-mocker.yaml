@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    openyurt.io/topologyKeys: openyurt.io/nodepool
+  name: device-rasp-mocker
+spec:
+  ports:
+    - name: tcp
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    app: device-rasp-mocker
+  type: NodePort
+
+---
+apiVersion: apps.openyurt.io/v1alpha1
+kind: UnitedDeployment
+metadata:
+  name: device-rasp-mocker
+spec:
+  selector:
+    matchLabels:
+      app: device-rasp-mocker
+  workloadTemplate:
+    deploymentTemplate:
+      metadata:
+        labels:
+          app: device-rasp-mocker
+      spec:
+        template:
+          metadata:
+            labels:
+              app: device-rasp-mocker
+          spec:
+            containers:
+              - name: nginx
+                image: huiwq1990/raspberrypi-mocker:v0.0.0-dev
+  topology:
+    pools:
+      - name: hangzhou
+        nodeSelectorTerm:
+          matchExpressions:
+            - key: apps.openyurt.io/nodepool
+              operator: In
+              values:
+                - hangzhou
+        replicas: 1
+        tolerations:
+          - effect: NoSchedule
+            key: apps.openyurt.io/example
+            operator: Exists

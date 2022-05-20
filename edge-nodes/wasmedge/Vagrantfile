@@ -1,0 +1,13 @@
+Vagrant.configure("2") do |config|
+#   config.vm.network "private_network", type: "dhcp"
+  config.vm.network "public_network", ip: "192.168.68.202"
+#     name: "vboxnet3"
+  config.vm.hostname = "wasmedge"
+  config.vm.box = "bento/ubuntu-20.04"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4096
+    v.cpus = 4
+  end
+end
+
+#源配置 https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/

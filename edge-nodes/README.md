@@ -88,6 +88,9 @@ sudo swapoff -a
 ### 节点添加
 
 ```shell
+# 支持单独添加节点
+yum -y install socat conntrack-tools
+swapoff -a
 #wget https://github.com/openyurtio/openyurt/releases/download/v0.6.0/yurtctl; chmod u+x yurtctl;
 
 ./yurtctl join 114.67.122.239:6443 --token=mqtv7p.dhqv7szz6csif7o1 --discovery-token-unsafe-skip-ca-verification --organizations=openyurt:tenant:19818831111  --ignore-preflight-errors all --v=5

@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    openyurt.io/topologyKeys: openyurt.io/nodepool
+  name: device-rasp
+spec:
+  ports:
+    - name: tcp
+      port: 59996
+      protocol: TCP
+      targetPort: 59996
+  selector:
+    app: device-rasp
+
+---
+apiVersion: apps.openyurt.io/v1alpha1
+kind: UnitedDeployment
+metadata:
+  name: device-rasp
+spec:
+  selector:
+    matchLabels:
+      app: device-rasp
+  workloadTemplate:
+    deploymentTemplate:
+      metadata:
+        labels:
+          app: device-rasp
+      spec:
+        template:
+          metadata:
+            labels:
+              app: device-rasp
+          spec:
+            containers:
+              - name: nginx
+                image: huiwq1990/device-raspberrypi:v0.0.0-dev
+                env:
+                  - name: DEMO_GREETING
+                    value: "Hello from the environment"
+                  - name: CLIENTS_CORE_COMMAND_HOST
+                    value: edgex-core-command
+                  - name: CLIENTS_CORE_DATA_HOST
+                    value: edgex-core-data
+                  - name: CLIENTS_CORE_METADATA_HOST
+                    value: edgex-core-metadata
+                  - name: CLIENTS_SUPPORT_NOTIFICATIONS_HOST
+                    value: edgex-support-notifications
+                  - name: CLIENTS_SUPPORT_SCHEDULER_HOST
+                    value: edgex-support-scheduler
+                  - name: DATABASES_PRIMARY_HOST
+                    value: edgex-redis
+                  - name: EDGEX_SECURITY_SECRET_STORE
+                    value: "false"
+                  - name: MESSAGEQUEUE_HOST
+                    value: edgex-redis
+                  - name: REGISTRY_HOST
+                    value: edgex-core-consul
+                  - name: SERVICE_HOST
+                    value: device-raspberrypi
+  topology:
+    pools:
+      - name: hangzhou
+        nodeSelectorTerm:
+          matchExpressions:
+            - key: apps.openyurt.io/nodepool
+              operator: In
+              values:
+                - hangzhou
+        replicas: 1
+        tolerations:
+          - effect: NoSchedule
+            key: apps.openyurt.io/example
+            operator: Exists

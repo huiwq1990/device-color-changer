@@ -21,13 +21,55 @@ kubectl label node $EDGE_NODE apps.openyurt.io/desired-nodepool=${NODEPOOL_NAME}
 # 检查节点池状态
 kubectl get nodepool
 
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: edgex-app-rules-engine
+  topology:
+    pools:
+    - name: huadong
+      nodeSelectorTerm:
+        matchExpressions:
+        - key: apps.openyurt.io/nodepool
+          operator: In
+          values:
+          - huadong
+      replicas: 1
+  workloadTemplate:
+    deploymentTemplate:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: edgex-app-rules-engine
+      spec:
+        selector:
+          matchLabels:
+            app: edgex-app-rules-engine
+        strategy: {}
+        template:
+          metadata:
+            creationTimestamp: null
+            labels:
+              app: edgex-app-rules-engine
+          spec:
+            containers:
+            - env:
+              - name: SERVI
+
+
+
+Error from server: error when creating "STDIN":
+ admission webhook "vuniteddeployment.kb.io" denied the request:
+  [spec.template.deploymentTemplate.metadata.labels: 
+  Invalid value: map[string]string(nil): `selector` does not match template `labels`, 
+  spec.template.deploymentTemplate.spec.template.metadata.labels: 
+  Invalid value: map[string]string(nil): `selector` does not match template `labels`]
 
 cat << EOF | kubectl apply -f -
 apiVersion: apps.openyurt.io/v1alpha1
 kind: UnitedDeployment
 metadata:
-  labels:
-    controller-tools.k8s.io: "1.0"
   name: test-yurt-deploy
 spec:
   selector:
@@ -39,6 +81,9 @@ spec:
         labels:
           app: test-yurt-deploy
       spec:
+        selector:
+          matchLabels:
+            app: test-yurt-deploy
         template:
           metadata:
             labels:

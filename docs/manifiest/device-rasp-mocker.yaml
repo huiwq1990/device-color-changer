@@ -37,6 +37,7 @@ spec:
             containers:
               - name: nginx
                 image: huiwq1990/raspberrypi-mocker:v0.0.0-dev
+                imagePullPolicy: Always
   topology:
     pools:
       - name: hangzhou

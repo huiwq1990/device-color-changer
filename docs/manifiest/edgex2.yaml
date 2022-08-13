@@ -1,0 +1,135 @@
+
+
+apiVersion: device.openyurt.io/v1alpha1
+kind: EdgeX
+metadata:
+  name: edgex-hangzhou
+spec:
+  version: jakarta
+  poolname: hangzhou
+  additinalservices:
+#    - metadata:
+#        name: edgex-device-virtual
+#      spec:
+#        type: NodePort
+#        selector:
+#          app: edgex-device-virtual
+#        ports:
+#          - name: http
+#            port: 49990
+#            protocol: TCP
+#            targetPort: 49990
+#            nodePort: 30090
+#    - metadata:
+#        name: edgex-device-rest
+#      spec:
+#        type: NodePort
+#        selector:
+#          app: edgex-device-rest
+#        ports:
+#          - name: http
+#            port: 49986
+#            protocol: TCP
+#            targetPort: 49986
+#            nodePort: 30086
+#    - metadata:
+#        name: edgex-ui
+#      spec:
+#        type: NodePort
+#        selector:
+#          app: edgex-ui
+#        ports:
+#          - name: http
+#            port: 4000
+#            protocol: TCP
+#            targetPort: 4000
+  additinaldeployments:
+#    - metadata:
+#        name: edgex-device-virtual
+#      spec:
+#        selector:
+#          matchLabels:
+#            app: edgex-device-virtual
+#        template:
+#          metadata:
+#            labels:
+#              app: edgex-device-virtual
+#          spec:
+#            hostname: edgex-device-virtual
+#            tolerations:
+#              - effect: NoSchedule
+#                operator: Exists
+#            containers:
+#              - name: edgex-device-virtual
+#                image: $VIRTUAL_DEVICE_IMAGE
+#                imagePullPolicy: IfNotPresent
+#                ports:
+#                  - name: http
+#                    protocol: TCP
+#                    containerPort: 49990
+#                envFrom:
+#                  - configMapRef:
+#                      name: common-variables
+#                env:
+#                  - name: Service_Host
+#                    value: "edgex-device-virtual"
+#    - metadata:
+#        name: edgex-device-rest
+#      spec:
+#        selector:
+#          matchLabels:
+#            app: edgex-device-rest
+#        template:
+#          metadata:
+#            labels:
+#              app: edgex-device-rest
+#          spec:
+#            hostname: edgex-device-rest
+#            tolerations:
+#              - effect: NoSchedule
+#                operator: Exists
+#            containers:
+#              - name: edgex-device-rest
+#                image: $DEVICE_REST_IMAGE
+#                imagePullPolicy: IfNotPresent
+#                ports:
+#                  - name: http
+#                    protocol: TCP
+#                    containerPort: 49986
+#                envFrom:
+#                  - configMapRef:
+#                      name: common-variables
+#                env:
+#                  - name: Service_Host
+#                    value: "edgex-device-rest"
+
+    - metadata:
+        name: edgex-ui
+      spec:
+        selector:
+          matchLabels:
+            app: edgex-ui
+        template:
+          metadata:
+            labels:
+              app: edgex-ui
+          spec:
+            hostname: edgex-ui
+            tolerations:
+              - effect: NoSchedule
+                operator: Exists
+            containers:
+              - name: edgex-ui
+                image: nexus3.edgexfoundry.org:10004/edgex-ui:latest
+                imagePullPolicy: IfNotPresent
+                ports:
+                  - name: http
+                    protocol: TCP
+                    containerPort: 4000
+                envFrom:
+                  - configMapRef:
+                      name: common-variables
+                env:
+                  - name: Service_Host
+                    value: "edgex-ui"
+

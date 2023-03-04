@@ -14,9 +14,18 @@ make docker_build
 make docker_push
 ```
 
+
+
 ### 启动服务
 
+清理docker-proxy进程
 ```shell
+sudo service docker stop
+sudo rm -f /var/lib/docker/network/files/local-kv.db
+```
+
+```shell
+
 make docker_compose_up
 ```
 

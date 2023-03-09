@@ -35,4 +35,4 @@ make docker_compose_up
 http://localhost:5000/
 
 EdgexFoundry
-http://localhost:5000/
+http://localhost:4000/
